@@ -2,8 +2,8 @@ find_package(PkgConfig QUIET)
 
 if(PKG_CONFIG_FOUND)
   pkg_check_modules(PC_DIV QUIET div)
-  if(PC_DIV_FOUND)
 
+  if(PC_DIV_FOUND)
     set(DIV_FOUND ${PC_DIV_FOUND})
     set(DIV_INCLUDE_DIRS ${PC_DIV_INCLUDE_DIRS})
     set(DIV_LIBRARY_DIRS ${PC_DIV_LIBRARY_DIRS})
@@ -16,5 +16,4 @@ if(PKG_CONFIG_FOUND)
   else()
     message(FATAL_ERROR "div not found. Please install div and try again.")
   endif()
-
 endif()

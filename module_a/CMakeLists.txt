@@ -5,6 +5,7 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
+
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
@@ -13,10 +14,9 @@ include(GNUInstallDirs)
 
 add_library(${PROJECT_NAME} SHARED add.cc)
 
-
-#-----------------------------------------------------
+# -----------------------------------------------------
 # Install include files and targets
-#-----------------------------------------------------
+# -----------------------------------------------------
 install(
   FILES
   ${CMAKE_SOURCE_DIR}/add.h
@@ -35,9 +35,9 @@ install(
   DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
 )
 
-#-----------------------------------------------------
+# -----------------------------------------------------
 # Install CMake config file
-#-----------------------------------------------------
+# -----------------------------------------------------
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
