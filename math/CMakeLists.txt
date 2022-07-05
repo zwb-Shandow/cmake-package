@@ -87,3 +87,14 @@ install(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindDIV.cmake
   DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
 )
+
+# -----------------------------------------------------
+# Install pkg-config file
+# -----------------------------------------------------
+configure_file(cmake/math.pc.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
+
+install(
+  FILES
+  ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig
+)

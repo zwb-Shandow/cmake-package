@@ -5,8 +5,7 @@ libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
 
 Name: lib@CMAKE_PROJECT_NAME@
 Version: @PROJECT_VERSION@
-Description: div library
-URL: @PACKAGE_URL@
+Description: sub library
 Requires:
 Libs: -L${libdir} -l@CMAKE_PROJECT_NAME@
 Cflags: -I${includedir}

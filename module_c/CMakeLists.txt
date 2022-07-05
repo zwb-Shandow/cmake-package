@@ -25,14 +25,7 @@ install(
 
 install(
   TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}-targets
   LIBRARY DESTINATION lib
-)
-
-install(
-  EXPORT ${PROJECT_NAME}-targets
-  FILE ${PROJECT_NAME}-targets.cmake
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
 )
 
 # -----------------------------------------------------

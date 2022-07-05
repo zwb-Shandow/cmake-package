@@ -61,3 +61,14 @@ install(
   ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
   DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
 )
+
+# -----------------------------------------------------
+# Install pkg-config file
+# -----------------------------------------------------
+configure_file(cmake/sub.pc.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
+
+install(
+  FILES
+  ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig
+)

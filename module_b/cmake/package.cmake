@@ -46,8 +46,8 @@ set(CPACK_OUTPUT_FILE_PREFIX packages)
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "sub library")
 
 # 供应商信息
-set(CPACK_PACKAGE_VENDOR trunk)
-set(CPACK_PACKAGE_CONTACT trunk@trunk.tech)
+set(CPACK_PACKAGE_VENDOR shandow)
+set(CPACK_PACKAGE_CONTACT shandow@shandow.tech)
 
 # 版本相关
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})

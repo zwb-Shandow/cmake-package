@@ -42,7 +42,9 @@ sudo make package -i package/*.deb
 
 ### 2.3 test
 
-若 math 库缺少依赖，则会直接在 cmake 阶段进行错误提示，可自行删减库进行测试
+若 math 库缺少依赖，则会直接在 cmake 阶段进行错误提示，可自行删减库进行测试。
+以下提供两种编译方式:
+ - cmake 编译
 
 ```shell
 cd test
@@ -51,4 +53,9 @@ cmake ..
 make -j$(nproc)
 ./test
 ```
-
+ - gcc 编译
+```shell
+cd test
+g++ main.cc -o main `pkg-config --cflags --libs math`
+./main
+```

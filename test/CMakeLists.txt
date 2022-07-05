@@ -9,14 +9,17 @@ endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-find_package(math REQUIRED)
+# 支持 find_package 及 pkg-config 找包方式
+# find_package(math REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(MATH REQUIRED math)
 
-include_directories(${math_INCLUDE_DIRS})
+include_directories(${MATH_INCLUDE_DIRS})
 
-link_directories(${math_LIBRARY_DIRS})
+link_directories(${MATH_LIBRARY_DIRS})
 
 add_executable(${PROJECT_NAME} main.cc)
 target_link_libraries(
   ${PROJECT_NAME}
-  ${math_LIBRARIES}
+  ${MATH_LIBRARIES}
 )
