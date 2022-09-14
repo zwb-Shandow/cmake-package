@@ -16,22 +16,6 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# Retrieve the machine supported by the toolchain
-if(DEFINED CMAKE_TOOLCHAIN_FILE)
-  execute_process(
-    COMMAND ${CMAKE_C_COMPILER} -dumpmachine
-    OUTPUT_VARIABLE TOOLCHAIN_MACHINE OUTPUT_STRIP_TRAILING_WHITESPACE
-  )
-
-  if(${TOOLCHAIN_MACHINE} STREQUAL "arm-linux-gnueabihf")
-    set(DPKG_ARCH armhf)
-  endif()
-
-  if(${TOOLCHAIN_MACHINE} STREQUAL "aarch64-linux-gnu")
-    set(DPKG_ARCH arm64)
-  endif()
-endif()
-
 # 打包相关
 set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
@@ -56,10 +40,6 @@ set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 set(CPACK_SYSTEM_NAME ${CMAKE_SYSTEM_NAME})
 set(CPACK_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
-
-# 依赖
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-endif()
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)  # dpkg 自动生成依赖树
 
 include(CPack)
