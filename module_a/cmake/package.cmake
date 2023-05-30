@@ -42,6 +42,21 @@ set(CPACK_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
 # set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)  # dpkg 自动生成依赖树
 
+# 安装自动化控制脚本
+set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA 
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/preinst;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/postinst;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/prerm;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/postrm"
+)
+
+# 为脚本添加可执行权限
+execute_process(COMMAND chmod 0755 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/preinst)
+execute_process(COMMAND chmod 0755 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postinst)
+execute_process(COMMAND chmod 0755 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/prerm)
+execute_process(COMMAND chmod 0755 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postrm)
+
+
 # 定义组件
 set(CPACK_COMPONENTS_ALL runtime dev)
 set(CPACK_DEB_COMPONENT_INSTALL ON)
@@ -50,8 +65,22 @@ set(CPACK_DEBIAN_ENABLE_COMPONENT_DEPENDS ON)
 # 设置组件描述
 set(CPACK_DEBIAN_RUNTIME_PACKAGE_NAME ${PROJECT_NAME})
 set(CPACK_COMPONENT_RUNTIME_DESCRIPTION "Add function library - shared libraries\n It provides the shared libraries.")
+# 为运行时包单独增加自动化脚本
+# set(CPACK_DEBIAN_RUNTIME_PACKAGE_CONTROL_EXTRA 
+#   "${CMAKE_CURRENT_SOURCE_DIR}/scripts/preinst;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postinst;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/prerm;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postrm")
+
 set(CPACK_DEBIAN_DEV_PACKAGE_NAME ${PROJECT_NAME}-dev)
 set(CPACK_COMPONENT_DEV_DESCRIPTION "Add function library - development files\n It provides the development libraries, header files.")
 set(CPACK_COMPONENT_DEV_DEPENDS runtime)
+# 为开发包单独增加自动化脚本
+# set(CPACK_DEBIAN_DEV_PACKAGE_CONTROL_EXTRA 
+#   "${CMAKE_CURRENT_SOURCE_DIR}/scripts/preinst;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postinst;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/prerm;
+#    ${CMAKE_CURRENT_SOURCE_DIR}/scripts/postrm")
+
 
 include(CPack)
