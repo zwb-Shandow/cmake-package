@@ -21,18 +21,21 @@ install(
   FILES
   ${CMAKE_SOURCE_DIR}/add.h
   DESTINATION include
+  COMPONENT dev
 )
 
 install(
   TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}-targets
   LIBRARY DESTINATION lib
+  COMPONENT runtime
 )
 
 install(
   EXPORT ${PROJECT_NAME}-targets
   FILE ${PROJECT_NAME}-targets.cmake
   DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
+  COMPONENT dev
 )
 
 # -----------------------------------------------------
@@ -58,6 +61,7 @@ install(
   ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
   ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
   DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}
+  COMPONENT dev
 )
 
 # -----------------------------------------------------
@@ -69,4 +73,5 @@ install(
   FILES
   ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
   DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig
+  COMPONENT dev
 )

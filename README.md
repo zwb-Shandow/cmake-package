@@ -4,7 +4,7 @@
 
 ## 1. 代码目录
 
-|- **module_a**  add 动态库，提供 (find_package)CONFIG 配置
+|- **module_a**  add 动态库，提供 (find_package)CONFIG 配置，提供runtime/development deb
 
 |- **module_b**  sub 静态库，提供 (find_package)CONFIG 配置
 
